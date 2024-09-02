@@ -138,6 +138,36 @@ body {
 
 /* ---- Selection ----- */
 
+.gameContainer {
+  text-align: left;
+  margin-left: 32rem;
+  margin-right: 32rem;
+  margin-top: 1.2rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+
+  border: 0.2rem solid black;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  place-items: center;
+
+  /* width: 50rem; */
+}
+
+.gameHeading {
+  margin-top: 0.8rem;
+  margin-left: 2.6rem;
+  margin-bottom: 0.5rem;
+
+  font-size: 2rem;
+}
+
+.introText {
+  font-size: 0.8rem;
+}
+
 .playNow {
   display: inline-block;
 
@@ -182,32 +212,6 @@ body {
   margin-top: 0.4rem;
 }
 
-.gameContainer {
-  text-align: left;
-  margin-left: 28rem;
-  margin-right: 28rem;
-  margin-top: 2rem;
-  padding-bottom: 0.5rem;
-  padding-top: 0.5rem;
-
-  border: 0.2rem solid black;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  place-items: center;
-
-  /* width: 50rem; */
-}
-
-.gameHeading {
-  margin-top: 0.8rem;
-  margin-left: 2.6rem;
-  margin-bottom: 0.5rem;
-
-  font-size: 2rem;
-}
-
-.introText {
-  font-size: 0.8rem;
+.gameLogo:first-child {
+  margin-left: 2rem;
 }
