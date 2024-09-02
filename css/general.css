@@ -111,7 +111,7 @@ body {
   justify-content: flex-end; /* Alligns items to the end of main axis (goes left ro right)*/
   align-items: flex-start; /*Aligns items to the start of the cross axis (goes top to bottom) */
   /* Creates gap between content to space them out */
-  gap: 4.8rem;
+  gap: 1.4rem;
   margin-right: 1rem;
 
   /*Basics */
