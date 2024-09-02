@@ -144,11 +144,12 @@ body {
   display: inline-block; /*So heading can be aligned in center too*/
 }
 
-.introText {
-}
-
 /* ---- Games ----- */
 
 .gamesList {
   display: grid;
+}
+
+.introText {
+  font-size: 0.8rem;
 }
