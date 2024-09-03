@@ -15,7 +15,7 @@ const btnHold = document.querySelector(".btnHold");
 
 let scores, currentScore, activePlayer, playing;
 
-// Starting conditions
+// Function to reset everything includes starting condition
 const init = function () {
   scores = [0, 0];
   currentScore = 0;
@@ -35,15 +35,18 @@ const init = function () {
 };
 init();
 
+// Switch player if 1 is rolled
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
   currentScore = 0;
+  //If active player === 0 go 1 else stay 0
   activePlayer = activePlayer === 0 ? 1 : 0;
+  //Changes so that the player does not have playerActive class will now have it
   player0El.classList.toggle("playerActive");
   player1El.classList.toggle("playerActive");
 };
 
-// Rolling dice functionality
+// Functionality for rolling the dice
 btnRoll.addEventListener("click", function () {
   if (playing) {
     // 1. Generating a random dice roll
@@ -60,7 +63,7 @@ btnRoll.addEventListener("click", function () {
       document.getElementById(`current--${activePlayer}`).textContent =
         currentScore;
     } else {
-      // Switch to next player
+      // Switch to next player if 1 is rolled
       switchPlayer();
     }
   }
@@ -75,8 +78,8 @@ btnHold.addEventListener("click", function () {
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
 
-    // 2. Check if player's score is >= 100
-    if (scores[activePlayer] >= 100) {
+    // 2. Check if player's score is >= 50
+    if (scores[activePlayer] >= 50) {
       // Finish the game
       playing = false;
       diceEl.classList.add("hidden");

@@ -23,7 +23,7 @@ Large: 1.8
 
 --- 02 COLORS
 
-- Primary: #e67e22
+- Primary: #90EE90
 - Tints:
 90EE90	9BF09B	A6F1A6	B1F3B1	BCF5BC	C8F7C8	D3F8D3	DEFADE	E9FCE9	F4FDF4	FFFFFF
 
@@ -71,7 +71,7 @@ body {
   line-height: 1;
   font-weight: 400;
   color: 555;
-  background-color: #90ee90;
+  background-color: #82d682;
 }
 
 .heading {
@@ -125,12 +125,33 @@ body {
   margin-left: 3rem;
 }
 
+.navWord {
+  text-decoration: none;
+  color: black;
+}
+.navWord:hover,
+.navWord:active {
+  color: #487748;
+  transition: all 0.3s;
+}
+
 /* ----- Intro ------ */
 
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .headingBox {
   width: 45rem;
   height: 14rem;
   display: inline-block; /*So heading can be aligned in center too*/
+}
+
+.introText {
+  width: 14rem;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 
 /* ---- Selection ----- */
@@ -145,7 +166,7 @@ body {
 
   border: 0.2rem solid #2b472b;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-  background-color: #a6f1a6;
+  background-color: #9bf09b;
 
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -162,24 +183,26 @@ body {
   font-size: 2rem;
 }
 
-.introText {
-  font-size: 0.8rem;
-}
-
 .playNow {
   display: inline-block;
 
   text-decoration: none;
   color: black;
-  /* background-color: ligshtblue; */
 
   border: 0.2rem solid #2b472b;
   border-radius: 0.4rem;
+  transition: all 0.3s;
 
   margin-left: 5.8rem;
   margin-top: 0.8rem;
   margin-bottom: 0.5rem;
   padding: 0.3rem 0.5rem;
+}
+
+.playNow:hover,
+.playNow:active {
+  background-color: #73be73;
+  transition: all 0.3s;
 }
 
 .instructions {
@@ -196,8 +219,15 @@ body {
   margin-top: 0.8rem;
   margin-bottom: 0.5rem;
   padding: 0.3rem 0.5rem;
+
+  transition: all 0.3s;
 }
 
+.instructions:hover,
+.instructions:active {
+  background-color: #73be73;
+  transition: all 0.3s;
+}
 .gamesList {
   display: grid;
 }
@@ -212,4 +242,40 @@ body {
 
 .gameLogo:first-child {
   margin-left: 2rem;
+}
+
+/* ---Pop up for instructions ---*/
+
+.popup {
+  /* Make the container of the popup */
+  /* Default state it should be hidden */
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  justify-content: center;
+  align-items: center;
+}
+
+.popupContent {
+  background-color: #9bf09b;
+  padding: 40px;
+  border-radius: 10px;
+  width: 300px;
+
+  text-align: center;
+  line-height: 1.4;
+}
+
+.closePopup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
 }

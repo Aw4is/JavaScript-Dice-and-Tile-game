@@ -26,9 +26,15 @@
             <img class="logo" alt="Website Logo" src="imgs/logo.png" />
           </a>
           <ul class="mainNavList">
-            <li class="mainNavContent">Games</li>
-            <li class="mainNavContent">Coming Soon</li>
-            <li class="mainNavContent">About</li>
+            <li class="mainNavContent">
+              <a class="navWord" href="#">Games</a>
+            </li>
+            <li class="mainNavContent">
+              <a class="navWord" href="#">Coming Soon</a>
+            </li>
+            <li class="mainNavContent">
+              <a class="navWord" href="#"> About </a>
+            </li>
           </ul>
         </nav>
       </header>
@@ -37,44 +43,72 @@
         <div class="headingBox">
           <h1 class="heading">Explore different Games</h1>
         </div>
-        <p class="introText">
-          This website contains games exclusively made by using JavaScript, HTML
-          and CSS
-        </p>
-      </section>
-
-      <section class="currentGames">
-        <h1 class="heading headingSelection">Selection</h1>
-        <div class="gamesList">
-          <div class="gameContainer">
-            <div class="cardGrid">
-              <h2 class="gameHeading">Dice Game</h2>
-              <a href="diceGame/index.html" class="playNow gameHeadingItems">
-                Play</a
-              >
-              <div>
-                <a href="#" class="instructions gameHeadingItems">
-                  Instructions</a
-                >
-              </div>
-            </div>
-            <div class="cardImg">
-              <a href="#">
-                <img
-                  class="gameLogo"
-                  alt="Website Logo"
-                  src="imgs/diceLogo.png"
-                />
-                <img
-                  class="gameLogo"
-                  alt="Website Logo"
-                  src="imgs/diceLogo.png"
-                />
-              </a>
-            </div>
-          </div>
+        <div class="introTextCont">
+          <p class="introText">
+            This website contains games exclusively made by using JavaScript,
+            HTML and CSS made by me for fun and learning purposes
+          </p>
         </div>
       </section>
+      <div class="selectionColor">
+        <section class="currentGames">
+          <h1 class="heading headingSelection">Selection</h1>
+          <div class="gamesList">
+            <div class="gameContainer">
+              <div class="cardGrid">
+                <h2 class="gameHeading">Dice Game</h2>
+                <a href="diceGame/index.html" class="playNow gameHeadingItems">
+                  Play</a
+                >
+                <div>
+                  <a
+                    href="#"
+                    class="instructions gameHeadingItems"
+                    id="open--popup"
+                  >
+                    Instructions</a
+                  >
+                  <div id="instruction--popup" class="popup">
+                    <div class="popupContent">
+                      <span id="close--popup" class="closePopup"> &times;</span>
+                      <h2 class="popupHeading">Instructions</h2>
+                      <ul>
+                        <li class="popupText">
+                          Player 1 rolls dice until 1 is rolled
+                        </li>
+                        <li class="popupText">
+                          Player 1 can choose to hold the score and transfer
+                          their turn to Player 2, or keep going with the risk of
+                          losing their points if 1 is rolled
+                        </li>
+                        <li class="popupText">
+                          Process repeats till either player reaches to 50 to
+                          win the game
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cardImg">
+                <a href="#">
+                  <img
+                    class="gameLogo"
+                    alt="Website Logo"
+                    src="imgs/diceLogo.png"
+                  />
+                  <img
+                    class="gameLogo"
+                    alt="Website Logo"
+                    src="imgs/diceLogo.png"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
+    <script src="js/script.js"></script>
   </body>
 </html>

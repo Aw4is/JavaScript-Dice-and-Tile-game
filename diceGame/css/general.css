@@ -19,7 +19,7 @@ body {
   color: #333;
 
   /* Background color goes from dark blue (right) to left (light blue) */
-  /* background-image: linear-gradient(to top left, #999 0%, #fff 100%); */
+  background-image: linear-gradient(to top left, #82d682 0%, #90ee90 100%);
 
   /* Make flex to center the items in the view port */
   display: flex;
@@ -67,7 +67,7 @@ main {
 .score {
   font-size: 8rem;
   font-weight: 300;
-  color: #c7365f;
+  color: black;
   margin-bottom: auto;
 }
 
@@ -86,10 +86,10 @@ main {
 }
 
 .current {
-  background-color: #c7365f;
+  background-color: #d3f8d3;
   opacity: 0.8;
   border-radius: 9px;
-  color: white;
+  color: black;
   width: 65%;
   padding: 2rem;
   text-align: center;
@@ -100,7 +100,7 @@ main {
   text-transform: uppercase;
   margin-bottom: 1rem;
   font-size: 1.7rem;
-  color: #ddd;
+  color: black;
 }
 
 .currentScore {
