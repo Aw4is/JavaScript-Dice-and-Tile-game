@@ -25,14 +25,10 @@ Large: 1.8
 
 - Primary: #e67e22
 - Tints:
-#fdf2e9
-#fae5d3
-#eb984e
+90EE90	9BF09B	A6F1A6	B1F3B1	BCF5BC	C8F7C8	D3F8D3	DEFADE	E9FCE9	F4FDF4	FFFFFF
 
 - Shades: 
-#cf711f
-#45260a
-
+90EE90	82D682	73BE73	65A765	568F56	487748	3A5F3A	2B472B	1D301D	0E180E	000000
 - Accents:
 - Greys
 
@@ -75,6 +71,7 @@ body {
   line-height: 1;
   font-weight: 400;
   color: 555;
+  background-color: #90ee90;
 }
 
 .heading {
@@ -146,8 +143,9 @@ body {
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
 
-  border: 0.2rem solid black;
+  border: 0.2rem solid #2b472b;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  background-color: #a6f1a6;
 
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -157,7 +155,7 @@ body {
 }
 
 .gameHeading {
-  margin-top: 0.8rem;
+  margin-top: 0.2rem;
   margin-left: 2.6rem;
   margin-bottom: 0.5rem;
 
@@ -175,13 +173,13 @@ body {
   color: black;
   /* background-color: ligshtblue; */
 
-  border: 0.2rem solid black;
+  border: 0.2rem solid #2b472b;
   border-radius: 0.4rem;
 
   margin-left: 5.8rem;
   margin-top: 0.8rem;
   margin-bottom: 0.5rem;
-  padding: 0.1rem 0.2rem;
+  padding: 0.3rem 0.5rem;
 }
 
 .instructions {
@@ -191,13 +189,13 @@ body {
   color: black;
   /* background-color: lightblue; */
 
-  border: 0.2rem solid black;
+  border: 0.2rem solid #2b472b;
   border-radius: 0.4rem;
 
   margin-left: 4rem;
   margin-top: 0.8rem;
   margin-bottom: 0.5rem;
-  padding: 0.1rem 0.2rem;
+  padding: 0.3rem 0.5rem;
 }
 
 .gamesList {
