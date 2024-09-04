@@ -1,40 +1,29 @@
 const gameBoard = document.getElementById("game--board");
+const playerElement = document.getElementById("player");
 const gridSize = 10;
+const tileSize = 50; // Size of each tile
+const tileGap = 2; // Gap between tiles
 let playerPosition = { x: 0, y: 0 };
 
-//Make Game Grid
+// Make Game Grid
 function makeGrid() {
   for (let y = 0; y < gridSize; y++) {
     for (let x = 0; x < gridSize; x++) {
-      // Creates a div element that represents each tile
       const tile = document.createElement("div");
-      //Adds tile class to tile (div element)
       tile.classList.add("tile");
-      //Sets data attributes
       tile.dataset.x = x;
       tile.dataset.y = y;
-      //Adds newly created tile div to the gameboard
       gameBoard.appendChild(tile);
     }
   }
-  updatePlayerPosition();
+  setTimeout(updatePlayerPosition, 0);
 }
 
-//Handles player movement
+// Handles player movement
 function updatePlayerPosition() {
-  document.querySelectorAll(".tile").forEach((tile) => {
-    tile.classList.remove("player");
-    tile.style.zIndex = "";
-  });
-
-  const playerTile = document.querySelector(
-    `.tile[data-x='${playerPosition.x}'][data-y='${playerPosition.y}']`
-  );
-  if (playerTile) {
-    playerTile.classList.add("player");
-    playerTile.style.zIndex = "10";
-    playerTile.style.position = "relative";
-  }
+  // Calculate the left and top positions based on tile size and gap
+  playerElement.style.left = `${playerPosition.x * (tileSize + tileGap)}px`;
+  playerElement.style.top = `${playerPosition.y * (tileSize + tileGap)}px`;
 }
 
 function movePlayer(event) {
@@ -55,16 +44,15 @@ function movePlayer(event) {
   updatePlayerPosition();
 }
 
-//Change colors of the top left/right and bottom left/right simultaneoulsy
+// Change colors of the top left/right and bottom left/right simultaneously
 function changeCornerTilesColor() {
   const corners = [
-    { x: 0, y: 0 }, //Top-left corner
-    { x: gridSize - 3, y: 0 }, //Top right corner
-    { x: 0, y: gridSize - 3 }, //Bottom left corner
-    { x: gridSize - 3, y: gridSize - 3 }, //Bottom right corner
+    { x: 0, y: 0 }, // Top-left corner
+    { x: gridSize - 3, y: 0 }, // Top right corner
+    { x: 0, y: gridSize - 3 }, // Bottom left corner
+    { x: gridSize - 3, y: gridSize - 3 }, // Bottom right corner
   ];
 
-  //Add color to each block (red)
   function colourBlock(corner, color) {
     for (let y = 0; y < 3; y++) {
       for (let x = 0; x < 3; x++) {
@@ -90,19 +78,20 @@ function changeCornerTilesColor() {
 
   corners.forEach((corner) => colourBlock(corner, "red"));
 
-  // Revert colors to light orange after 1 second
+  // Revert colors to blue after 3 seconds
   setTimeout(() => {
     corners.forEach((corner) => colourBlock(corner, "blue"));
     updatePlayerPosition(); // Ensure player position is reapplied
   }, 3000);
 
+  // Revert colors to white after 5 seconds
   setTimeout(() => {
     corners.forEach((corner) => colourBlock(corner, "white"));
     updatePlayerPosition(); // Ensure player position is reapplied
   }, 5000);
 }
 
-// starts game
+// Starts game
 makeGrid();
 window.addEventListener("keydown", movePlayer);
 setInterval(changeCornerTilesColor, 5000);
