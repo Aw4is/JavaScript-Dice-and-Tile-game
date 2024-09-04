@@ -17,14 +17,22 @@ body {
 .tile {
   width: 50px;
   height: 50px;
-  background-color: #ddd;
+  background-color: white;
+
+  /* Center content */
   display: flex;
-  justify-items: center;
+  align-items: center;
+  justify-content: center;
+
   font-size: 24px;
   font-weight: bold;
 }
 
 .player {
-  background-color: aqua;
+  background-color: black;
   color: white;
+
+  /* Ensure player above tile */
+  z-index: 10;
+  position: relative; /* So Z index takes effect */
 }
