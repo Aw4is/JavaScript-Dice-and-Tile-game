@@ -261,12 +261,16 @@ body {
   justify-content: center;
   align-items: center;
 }
+/* 
+- Shades: 
+90EE90	82D682	73BE73	65A765	568F56	487748	3A5F3A	2B472B	1D301D	0E180E	000000
+- Accents: */
 
 .popupContent {
-  background-color: #9bf09b;
+  background-color: #82d682;
   padding: 40px;
   border-radius: 10px;
-  width: 300px;
+  width: 400px;
 
   text-align: center;
   line-height: 1.4;
@@ -278,4 +282,9 @@ body {
   right: 10px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.popupHeadingTeritiary {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }

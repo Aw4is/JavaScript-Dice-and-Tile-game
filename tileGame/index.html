@@ -16,9 +16,25 @@
     <title>Tile Game</title>
   </head>
   <body>
-    <div class="gameBoard" id="game--board">
-      <div id="player" class="player">P</div>
+    <div class="healthPositioning">
+      <h2 class="bossHealth" id="boss--health">Boss Health: 50</h2>
     </div>
+    <div class="center">
+      <div class="gameBoard" id="game--board">
+        <div id="player" class="player">P</div>
+      </div>
+    </div>
+
+    <section class="gameOver">
+      <div id="win-popup" class="popup" style="display: none">
+        <div class="popupContent">
+          <h2 class="popupHeading">Congratulations!</h2>
+          <p class="popupText" id="winner-message"></p>
+          <button id="restart-win-popup" class="restartPopup">Restart</button>
+          <button id="close-win-popup" class="closePopup">Close</button>
+        </div>
+      </div>
+    </section>
     <script src="script.js"></script>
   </body>
 </html>

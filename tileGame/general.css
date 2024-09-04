@@ -1,12 +1,19 @@
+/* ---- General ---- */
+
 body {
   /* Center everything */
+  margin: 0;
+  background-color: #3a5f3a;
+}
+
+.center {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #333;
+  height: 75vh;
 }
+
+/* ---- Game Board ---- */
 
 .gameBoard {
   /* Create grid game board to be 10 by 10 */
@@ -30,6 +37,8 @@ body {
   font-weight: bold;
 }
 
+/* ---- Player  ---- */
+
 .player {
   /* Design the P text sindei player element */
   width: 50px;
@@ -45,4 +54,72 @@ body {
   position: absolute;
   /* Gains priority over everything */
   z-index: 100;
+}
+
+.attacking {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.8); /* Green glow, adjust as needed */
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* ---- Boss  ---- */
+.healthPositioning {
+  position: absolute;
+}
+
+.bossHealth {
+  width: 200px;
+  position: relative;
+  text-align: center;
+  border: 0.2rem solid #2b472b;
+  left: 20rem;
+  top: 10rem;
+  transform: translateX(-50%);
+
+  padding: 3rem;
+
+  background-color: #82d682;
+}
+
+.boss {
+  background-color: red; /* Color for the boss */
+  position: absolute;
+  z-index: 10;
+
+  width: 104px;
+  height: 104px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 108px;
+  font-weight: bold;
+}
+
+/* ---- Popup  ---- */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.popupContent {
+  text-align: center;
+}
+
+.closePopup {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.closePopup:hover {
+  background-color: #45a049;
 }
