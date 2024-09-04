@@ -1,4 +1,5 @@
 body {
+  /* Center everything */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,6 +9,7 @@ body {
 }
 
 .gameBoard {
+  /* Create grid game board to be 10 by 10 */
   display: grid;
   grid-template-columns: repeat(10, 50px);
   grid-template-rows: repeat(10, 50px);
@@ -16,9 +18,11 @@ body {
 }
 
 .tile {
+  /* Tile size and color */
   width: 50px;
   height: 50px;
   background-color: white;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,6 +31,7 @@ body {
 }
 
 .player {
+  /* Design the P text sindei player element */
   width: 50px;
   height: 50px;
   background-color: black;
@@ -36,6 +41,8 @@ body {
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
+  /* Position it so its in the grid */
   position: absolute;
+  /* Gains priority over everything */
   z-index: 100;
 }

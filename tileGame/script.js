@@ -1,12 +1,13 @@
 const gameBoard = document.getElementById("game--board");
 const playerElement = document.getElementById("player");
-const gridSize = 10;
+const gridSize = 10; //Number of grids 10x10
 const tileSize = 50; // Size of each tile
 const tileGap = 2; // Gap between tiles
 let playerPosition = { x: 0, y: 0 };
 
 // Make Game Grid
 function makeGrid() {
+  // Make loop to create tile which will be centered already by the body (CSS)
   for (let y = 0; y < gridSize; y++) {
     for (let x = 0; x < gridSize; x++) {
       const tile = document.createElement("div");
@@ -16,16 +17,18 @@ function makeGrid() {
       gameBoard.appendChild(tile);
     }
   }
+  // Update player position after grid has been rendered
   setTimeout(updatePlayerPosition, 0);
 }
 
-// Handles player movement
+// Updates player movement
 function updatePlayerPosition() {
   // Calculate the left and top positions based on tile size and gap
   playerElement.style.left = `${playerPosition.x * (tileSize + tileGap)}px`;
   playerElement.style.top = `${playerPosition.y * (tileSize + tileGap)}px`;
 }
 
+//Basics movement handler function
 function movePlayer(event) {
   switch (event.key) {
     case "ArrowUp":
@@ -54,6 +57,7 @@ function changeCornerTilesColor() {
   ];
 
   function colourBlock(corner, color) {
+    //Loops through tiles to change color
     for (let y = 0; y < 3; y++) {
       for (let x = 0; x < 3; x++) {
         const tile = document.querySelector(
@@ -78,13 +82,13 @@ function changeCornerTilesColor() {
 
   corners.forEach((corner) => colourBlock(corner, "red"));
 
-  // Revert colors to blue after 3 seconds
+  // Change color to blue for 3 seconds
   setTimeout(() => {
     corners.forEach((corner) => colourBlock(corner, "blue"));
     updatePlayerPosition(); // Ensure player position is reapplied
   }, 3000);
 
-  // Revert colors to white after 5 seconds
+  // Revert back to whites 5 seconds
   setTimeout(() => {
     corners.forEach((corner) => colourBlock(corner, "white"));
     updatePlayerPosition(); // Ensure player position is reapplied
