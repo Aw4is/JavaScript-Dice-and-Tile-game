@@ -83,19 +83,23 @@ function changeCornerTilesColor() {
   corners.forEach((corner) => colourBlock(corner, "red"));
 
   // Change color to blue for 3 seconds
+  // Change color to red
+  corners.forEach((corner) => colourBlock(corner, "red"));
+
+  // Change color to blue for 3 seconds
   setTimeout(() => {
     corners.forEach((corner) => colourBlock(corner, "blue"));
     updatePlayerPosition(); // Ensure player position is reapplied
-  }, 3000);
 
-  // Revert back to whites 5 seconds
-  setTimeout(() => {
-    corners.forEach((corner) => colourBlock(corner, "white"));
-    updatePlayerPosition(); // Ensure player position is reapplied
-  }, 5000);
+    // Revert back to white permanently after 3 seconds
+    setTimeout(() => {
+      corners.forEach((corner) => colourBlock(corner, "white"));
+      updatePlayerPosition(); // Ensure player position is reapplied
+    }, 3000);
+  }, 3000);
 }
 
 // Starts game
 makeGrid();
 window.addEventListener("keydown", movePlayer);
-setInterval(changeCornerTilesColor, 5000);
+setInterval(changeCornerTilesColor, 10000);
