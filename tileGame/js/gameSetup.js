@@ -13,10 +13,8 @@ let bossHealth = 50;
 
 // ----------------- Making Grid  ----------------- //
 
-// Make Game Grid
-function makeGrid() {
-  // Make loop to create tile which will be centered already by the body (CSS)
-  // gameBoard.innerHTML = ""; // Clear existing tiles
+// gameSetup.js
+export function makeGrid(gameBoard, updatePlayerPosition, updateBossPosition) {
   for (let y = 0; y < gridSize; y++) {
     for (let x = 0; x < gridSize; x++) {
       const tile = document.createElement("div");
@@ -26,7 +24,7 @@ function makeGrid() {
       gameBoard.appendChild(tile);
     }
   }
-  // Update player position after grid has been rendered
+  // Update player and boss positions
   setTimeout(updatePlayerPosition, 0);
   setTimeout(updateBossPosition, 0);
 }
