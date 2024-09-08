@@ -71,7 +71,7 @@ body {
   line-height: 1;
   font-weight: 400;
   color: 555;
-  background-color: #82d682;
+  background-color: #a6f1a6;
 }
 
 .heading {
@@ -171,7 +171,7 @@ body {
 
   border: 0.2rem solid #2b472b;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-  background-color: #9bf09b;
+  background-color: #90ee90;
 
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -313,7 +313,7 @@ body {
 }
 
 .card {
-  background-color: #73be73;
+  background-color: #90ee90;
   border: 0.2rem solid #2b472b;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   max-width: 300px;
