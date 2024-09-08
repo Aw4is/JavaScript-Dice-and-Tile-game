@@ -348,5 +348,5 @@ function checkForWin() {
 makeGrid();
 window.addEventListener("keydown", movePlayer);
 window.addEventListener("keydown", playerAttack);
-// callChangeTilesInSequenceRandomly();
-getRandomPattern();
+// callChangeTilesInSequenceRandomly() after a slight delay;
+setTimeout(getRandomPattern,2000);

@@ -84,6 +84,9 @@ body {
   display: grid;
   height: 100vh;
   text-align: center;
+
+  justify-content: center;
+    align-items: center;
 }
 
 /* ----- Navigation ------- */
@@ -141,6 +144,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 .headingBox {
   width: 45rem;
@@ -152,6 +156,7 @@ body {
   width: 14rem;
   font-size: 1rem;
   line-height: 1.2;
+
 }
 
 /* ---- Selection ----- */
@@ -177,8 +182,9 @@ body {
 
 .gameHeading {
   margin-top: 0.2rem;
-  margin-left: 2.6rem;
+  margin-left: 2.8rem;
   margin-bottom: 0.5rem;
+  text-align: center;
 
   font-size: 2rem;
 }
@@ -193,7 +199,7 @@ body {
   border-radius: 0.4rem;
   transition: all 0.3s;
 
-  margin-left: 5.8rem;
+  margin-left: 5rem;
   margin-top: 0.8rem;
   margin-bottom: 0.5rem;
   padding: 0.3rem 0.5rem;
@@ -215,7 +221,7 @@ body {
   border: 0.2rem solid #2b472b;
   border-radius: 0.4rem;
 
-  margin-left: 4rem;
+  margin-left: 3rem;
   margin-top: 0.8rem;
   margin-bottom: 0.5rem;
   padding: 0.3rem 0.5rem;
@@ -288,3 +294,84 @@ body {
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
 }
+
+/* ---- Updates ----- */
+
+.updates{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cardLayout{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Creates 2 equal columns */
+  gap: 2rem; /* Space between grid items */
+  padding: 1rem;
+
+}
+
+.card {
+  background-color: #73be73;
+  border: 0.2rem solid #2b472b;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  max-width: 300px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s;
+
+
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  padding: 16px;
+  height:16rem;
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.5em;
+  color:black;
+}
+
+.cardHeader {
+  font-size: 1em;
+  color: black;
+
+  margin-top: 0.4rem;;
+  margin-bottom: 0.3rem;
+}
+
+.cardList{
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+  margin-left: 0.4rem;
+}
+
+.cardLink {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  margin-top: auto;
+
+  transition: color 0.3s;
+}
+
+.cardLink:hover {
+  color: #0056b3; /* Color on hover */
+}
+
+

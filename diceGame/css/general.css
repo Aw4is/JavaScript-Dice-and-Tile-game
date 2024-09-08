@@ -19,7 +19,7 @@ body {
   color: #333;
 
   /* Background color goes from dark blue (right) to left (light blue) */
-  background-image: linear-gradient(to top left, #82d682 0%, #90ee90 100%);
+  background-image: linear-gradient(to top left, #568F56 0%, #82D682 100%);
 
   /* Make flex to center the items in the view port */
   display: flex;
@@ -27,9 +27,6 @@ body {
   justify-content: center;
 }
 
-/* LAYOUT */
-
-/* ---- ViewPort */
 main {
   position: relative;
   width: 100rem;
@@ -40,7 +37,10 @@ main {
   display: flex;
 }
 
-/* ---- Player ---- */
+
+
+
+/* ---- Players ---- */
 
 .player {
   /* How much it grows compared to the rest of the flex items - each player takes 50% of the container */
@@ -54,7 +54,6 @@ main {
   transition: all 0.75s;
 }
 
-/*--- Elements ---- */
 .name {
   font-size: 4rem;
   text-transform: uppercase;
@@ -107,7 +106,9 @@ main {
   font-size: 3.5rem;
 }
 
-/* ABSOLUTE POSITIONED ELEMENTS */
+
+/* ---- Buttons ---- */
+
 .btn {
   /* Position will be absolute to its parent container which is set as relative */
   position: absolute;
@@ -127,19 +128,13 @@ main {
 
   background-color: white;
   background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
 
   padding: 0.7rem 2.5rem;
   border-radius: 50rem;
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
 }
 
-.btn::first-letter {
-  /* Change size of buttons - treated as font */
-  font-size: 2.4rem;
-  display: inline-block;
-  margin-right: 0.7rem;
-}
+
 
 .btnNew {
   top: 4rem;
