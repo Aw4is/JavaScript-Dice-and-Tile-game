@@ -113,56 +113,186 @@ function playerAttack(event) {
 
 // ----------------- Tiling System ----------------- //
 
-// Change colors of the top left/right and bottom left/right simultaneously
-function changeCornerTilesColor() {
-  const corners = [
-    { x: 0, y: 0 }, // Top-left corner
-    { x: gridSize - 3, y: 0 }, // Top right corner
-    { x: 0, y: gridSize - 3 }, // Bottom left corner
-    { x: gridSize - 3, y: gridSize - 3 }, // Bottom right corner
-  ];
+const timeToChange = 3000;
 
-  function colourBlock(corner, color) {
-    //Loops through tiles to change color
-    for (let y = 0; y < 3; y++) {
-      for (let x = 0; x < 3; x++) {
-        const tile = document.querySelector(
-          `.tile[data-x='${corner.x + x}'][data-y='${corner.y + y}']`
-        );
+//--Change colors of the top left/right and bottom left/right simultaneously
+const corners = [
+  { x: 0, y: 0 }, // Top-left corner
+  { x: gridSize - 3, y: 0 }, // Top right corner
+  { x: 0, y: gridSize - 3 }, // Bottom left corner
+  { x: gridSize - 3, y: gridSize - 3 }, // Bottom right corner
+];
+
+function colourBlock(corner, color) {
+      //Loops through tiles to change color
+      for (let y = 0; y < 3; y++) {
+        for (let x = 0; x < 3; x++) {
+          const tile = document.querySelector(
+            `.tile[data-x='${corner.x + x}'][data-y='${corner.y + y}']`
+          );
+          if (tile) {
+            tile.style.backgroundColor = color;
+
+            // Reapply the player class if the tile is the player’s position
+            if (
+              playerPosition.x === corner.x + x &&
+              playerPosition.y === corner.y + y
+            ) {
+              tile.classList.add("player");
+              tile.style.zIndex = "10";
+              tile.style.position = "relative";
+            }
+          }
+        }
+      }
+    
+
+
+  }
+const setColourCorner = function colourCorner3x3Tiles(){
+
+    corners.forEach((corner) => colourBlock(corner, "red"));
+
+    // Change color to blue for 3 seconds
+    // Change color to red
+    corners.forEach((corner) => colourBlock(corner, "red"));
+
+    // Change color to blue for 3 seconds
+    setTimeout(() => {
+      corners.forEach((corner) => colourBlock(corner, "blue"));
+      updatePlayerPosition(); // Ensure player position is reapplied
+
+      // Revert back to white permanently after 3 seconds
+      setTimeout(() => {
+        corners.forEach((corner) => colourBlock(corner, "white"));
+        updatePlayerPosition(); // Ensure player position is reapplied
+      }, timeToChange);
+    }, timeToChange);
+
+  }
+  
+
+//--Change the outer tiles
+function colourTopBottomRows(color) {
+    for (let x = 0; x < gridSize; x++) {
+      // Top two rows (y = 0 and y = 1)
+      for (let y = 0; y < 2; y++) {
+        const tile = document.querySelector(`.tile[data-x='${x}'][data-y='${y}']`);
         if (tile) {
           tile.style.backgroundColor = color;
-
-          // Reapply the player class if the tile is the player’s position
-          if (
-            playerPosition.x === corner.x + x &&
-            playerPosition.y === corner.y + y
-          ) {
-            tile.classList.add("player");
-            tile.style.zIndex = "10";
-            tile.style.position = "relative";
-          }
+        }
+      }
+  
+      // Bottom two rows (y = gridSize - 2 and y = gridSize - 1)
+      for (let y = gridSize - 2; y < gridSize; y++) {
+        const tile = document.querySelector(`.tile[data-x='${x}'][data-y='${y}']`);
+        if (tile) {
+          tile.style.backgroundColor = color;
         }
       }
     }
   }
 
-  corners.forEach((corner) => colourBlock(corner, "red"));
+function colourLeftRightColumns(color) {
+    for (let y = 0; y < gridSize; y++) {
+      // Left two columns (x = 0 and x = 1)
+      for (let x = 0; x < 2; x++) {
+        const tile = document.querySelector(`.tile[data-x='${x}'][data-y='${y}']`);
+        if (tile) {
+          tile.style.backgroundColor = color;
+        }
+      }
+  
+      // Right two columns (x = gridSize - 2 and x = gridSize - 1)
+      for (let x = gridSize - 2; x < gridSize; x++) {
+        const tile = document.querySelector(`.tile[data-x='${x}'][data-y='${y}']`);
+        if (tile) {
+          tile.style.backgroundColor = color;
+        }
+      }
+    }
+  }
 
-  // Change color to blue for 3 seconds
-  // Change color to red
-  corners.forEach((corner) => colourBlock(corner, "red"));
+const setColourOuter = function colourOuterLines(){
+  // Color the outer tiles (rows and columns)
+  colourTopBottomRows("red");
+  colourLeftRightColumns("red");
 
-  // Change color to blue for 3 seconds
+  // Change the colors after 3 seconds
   setTimeout(() => {
-    corners.forEach((corner) => colourBlock(corner, "blue"));
-    updatePlayerPosition(); // Ensure player position is reapplied
+    colourTopBottomRows("blue");
+    colourLeftRightColumns("blue");
 
-    // Revert back to white permanently after 3 seconds
+  // Revert back to white after another 3 seconds
+  setTimeout(() => {
+    colourTopBottomRows("white");
+    colourLeftRightColumns("white");
+  }, timeToChange);
+}, timeToChange);
+  }
+
+//--Change the color of the middle three tiles
+function changeMiddleColour(colour) {
+  for (let x = 2; x < 8; x++) {
+    for (let y = 2; y < 8; y++) {
+      const tile = document.querySelector(`.tile[data-x='${x}'][data-y='${y}']`);
+      if (tile) {
+        tile.style.backgroundColor = colour; // Use 'red' as a string
+        }
+      }
+    }
+  }
+
+  const setColourMiddle = function colourMiddleTiles() {
+    // Change the middle tiles to red initially
+    changeMiddleColour("red");
+  
+    // Change color to blue after 3 seconds
     setTimeout(() => {
-      corners.forEach((corner) => colourBlock(corner, "white"));
-      updatePlayerPosition(); // Ensure player position is reapplied
-    }, 3000);
-  }, 3000);
+      changeMiddleColour("blue");
+  
+      // Revert back to white after another 3 seconds
+      setTimeout(() => {
+        changeMiddleColour("white");
+      }, timeToChange);
+    }, timeToChange);
+  }
+
+//--Call three functions as a random interval
+const changeColourFunctions = {
+  1: setColourCorner,
+  2: setColourMiddle,
+  3: setColourOuter,
+};
+
+function getRandomNum() {
+  return Math.floor(Math.random() * 3) + 1;
+}
+
+function getRandomInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function setRandomPattern(){
+  const randomNum = getRandomNum();
+  const selectedFunction = changeColourFunctions[randomNum];
+  if (selectedFunction) {
+    selectedFunction(); // Call the function
+  } else {
+    console.error("No function found for number:", randomNum);
+  }
+}
+
+// Function to repeatedly call setRandomTile at random intervals
+function getRandomPattern() {
+  function callSetRandomTile() {
+    setRandomPattern(); // Call your function
+
+    // Schedule the next call with a random delay between 8 and 12 seconds
+    const interval = getRandomInterval(8000, 12000); // 8000 ms to 12000 ms
+    setTimeout(callSetRandomTile, interval);
+  }
+
+  callSetRandomTile();
 }
 
 // ----------------- Popup & Restarting ----------------- //
@@ -218,4 +348,5 @@ function checkForWin() {
 makeGrid();
 window.addEventListener("keydown", movePlayer);
 window.addEventListener("keydown", playerAttack);
-// setInterval(changeCornerTilesColor, 10000);
+// callChangeTilesInSequenceRandomly();
+getRandomPattern();
