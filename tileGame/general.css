@@ -14,6 +14,10 @@ body {
   height: 75vh;
 }
 
+.hidden{
+  display: none;
+}
+
 /* ---- Game Board ---- */
 
 .gameBoard {
@@ -87,6 +91,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  gap:2rem;
 }
 
 .bossHealth {
@@ -107,7 +113,7 @@ body {
   background-color: transparent;
   position: absolute;
   z-index: 1;
-  border: 0.14rem solid violet;
+  border: 0.14rem solid #007300;
 
 
   width: 100px;

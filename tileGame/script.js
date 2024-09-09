@@ -196,8 +196,8 @@ const corners = [
 
 function colourBlock(corner, color) {
       //Loops through tiles to change color
-      for (let y = 0; y < 3; y++) {
-        for (let x = 0; x < 3; x++) {
+      for (let y = 0; y < 4; y++) {
+        for (let x = 0; x < 4; x++) {
           const tile = document.querySelector(
             `.tile[data-x='${corner.x + x}'][data-y='${corner.y + y}']`
           );
@@ -476,17 +476,24 @@ function getBossTilesLoop(){
 }
 
 
-
+const startPopup = document.getElementById("start-popup")
 // Starts game
 function startGame() {
   if (!isPaused) {
-    makeGrid();
+    // makeGrid();
+    startPopup.classList.add("hidden");
+
     window.addEventListener("keydown", movePlayer);
     window.addEventListener("keydown", playerAttack);
-    // setTimeout(getRandomPattern, 2000);
+    setTimeout(getRandomPattern, 2000);
     checkForWinLoop();
     startBossMovement();
   }
 }
-startGame();
+
+const startBtn = document.getElementById("start-button");
+makeGrid()
+startBtn.addEventListener("click",startGame);
+
+
 
