@@ -1,18 +1,20 @@
 const gameBoard = document.getElementById("game--board");
 const playerElement = document.getElementById("player");
+const playerImg = document.querySelector(".playerImg")
 
 const gridSize = 10; //Number of grids 10x10
 const tileSize = 50; // Size of each tile
 const tileGap = 2; // Gap between tiles
 let playerPosition = { x: 0, y: 0 };
 
-const bossSize = 2; // Boss occupies a 2x2 area
+const bossSize = 4; // Boss occupies a 2x2 area
 let bossPosition = { x: 5, y: 5 }; // Initial position of the boss
 const bossHealthElement = document.getElementById("boss--health");
 let bossHealth = 50;
 
-// ----------------- Making Grid  ----------------- //
+let isPaused = false;
 
+// ----------------- Making Grid  ----------------- //
 // Make Game Grid
 function makeGrid() {
   // Make loop to create tile which will be centered already by the body (CSS)
@@ -31,13 +33,15 @@ function makeGrid() {
   setTimeout(updateBossPosition, 0);
 }
 
-// ----------------- Making Boss  ----------------- //
+// ----------------- Boss Movement  ----------------- //
 
 //Create boss
-const bossElement = document.createElement("div");
-bossElement.classList.add("boss");
-bossElement.textContent = "B";
-gameBoard.appendChild(bossElement);
+// const bossElement = document.createElement("div");
+// bossElement.classList.add("boss");
+// bossElement.textContent = "B";
+// gameBoard.appendChild(bossElement);
+
+const bossElement = document.querySelector(".boss")
 
 //Fixing Boss Posiiton
 function updateBossPosition() {
@@ -48,6 +52,69 @@ function updateBossPosition() {
   bossElement.style.top = `${top}px`;
   bossElement.style.width = `${bossSize * (tileSize + tileGap) - tileGap}px`;
   bossElement.style.height = `${bossSize * (tileSize + tileGap) - tileGap}px`;
+}
+
+function moveBossRandomly(){
+  if (isPaused){return};
+  const directions = [
+    { x: 0, y: -1 }, // Move up
+    { x: 0, y: 1 },  // Move down
+    { x: -1, y: 0 }, // Move left
+    { x: 1, y: 0 }   // Move right
+  ];
+
+  // Choose a random direction
+  const direction = directions[Math.floor(Math.random() * directions.length)];
+
+  // Calculate new position
+  const newX = bossPosition.x + direction.x;
+  const newY = bossPosition.y + direction.y;
+
+  // Ensure the new position is within bounds
+  if (isValidBossPosition(newX, newY)) {
+    bossPosition.x = newX;
+    bossPosition.y = newY;
+    updateBossPosition();
+  }
+}
+
+function isValidBossPosition(x, y) {
+  // Ensure position is within grid bounds
+  if (x < 0 || x > gridSize - bossSize || y < 0 || y > gridSize - bossSize) {
+    return false;
+  }
+
+  // Check if the boss's new position overlaps with the player's position
+  for (let i = 0; i < bossSize; i++) {
+    for (let j = 0; j < bossSize; j++) {
+      const tileX = x + i;
+      const tileY = y + j;
+      if (tileX === playerPosition.x && tileY === playerPosition.y) {
+        return false; // Overlaps with player
+      }
+    }
+  }
+
+  return true;
+}
+
+function startBossMovement() {
+  // Move boss randomly every 3 seconds (3000 ms)
+  if (isPaused){return};
+  setInterval(moveBossRandomly, 3000);
+}
+
+// Gets the coordinates of the boss tile to check if the player is within them
+function getBossTiles() {
+  const bossTiles = [];
+  for (let i = 0; i < bossSize; i++) {
+    for (let j = 0; j < bossSize; j++) {
+      const x = bossPosition.x + i;
+      const y = bossPosition.y + j;
+      bossTiles.push({ x, y });
+    }
+  }
+  return bossTiles;
 }
 
 // ----------------- Player Movement System ----------------- //
@@ -61,6 +128,7 @@ function updatePlayerPosition() {
 
 //Basics movement handler function
 function movePlayer(event) {
+  if (isPaused){return};
   switch (event.key) {
     case "ArrowUp":
       if (playerPosition.y > 0) playerPosition.y--;
@@ -85,6 +153,7 @@ const cooldown = 1200; //in miliseconds
 let isCooldown = false; //checks if attack is in cooldown
 
 function playerAttack(event) {
+  if (isPaused){return};
   //If cooldown is false stop functioning from completely executing
   if (isCooldown) {
     return;
@@ -98,11 +167,13 @@ function playerAttack(event) {
     bossHealthElement.textContent = `Boss Health: ${bossHealth}`; //health updated
     checkForWin();
 
-    playerElement.classList.add("attacking");
+    // playerElement.classList.add("attacking");
+    playerImg.classList.add("attacking");
     isCooldown = true;
 
     setTimeout(() => {
-      playerElement.classList.remove("attacking");
+      // playerElement.classList.remove("attacking");
+      playerImg.classList.remove("attacking")
     }, 1000); // 1000 milliseconds = 1 second
 
     setTimeout(() => {
@@ -272,7 +343,9 @@ function getRandomNum() {
 function getRandomInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 function setRandomPattern(){
+  if (isPaused){return};
   const randomNum = getRandomNum();
   const selectedFunction = changeColourFunctions[randomNum];
   if (selectedFunction) {
@@ -284,8 +357,10 @@ function setRandomPattern(){
 
 // Function to repeatedly call setRandomTile at random intervals
 function getRandomPattern() {
+  if (isPaused){return}
   function callSetRandomTile() {
-    setRandomPattern(); // Call your function
+    setRandomPattern();
+    checkForWin();
 
     // Schedule the next call with a random delay between 8 and 12 seconds
     const interval = getRandomInterval(8000, 12000); // 8000 ms to 12000 ms
@@ -295,8 +370,14 @@ function getRandomPattern() {
   callSetRandomTile();
 }
 
+
+
+
 // ----------------- Popup & Restarting ----------------- //
 
+
+const popUpText = document.getElementById("winner-message");
+const popUpHeading = document.querySelector(".popupHeading");
 //Restarts game to initial conditions
 function restarts() {
   // Reset all variables to their initial state
@@ -320,6 +401,15 @@ function showWinPopup() {
   popup.style.display = "flex";
 }
 
+function showLosePopup() {
+  const popup = document.getElementById("win-popup");
+  const message = document.getElementById("winner-message");
+  popUpHeading.textContent = "Oh no"
+  message.textContent = `You have lost the game!`;
+  popup.style.display = "flex";
+}
+
+
 // Function to close the win popup
 function closeWinPopup() {
   const popup = document.getElementById("win-popup");
@@ -337,16 +427,66 @@ document
     location.reload();
   });
 
+
 function checkForWin() {
-  // This is a placeholder condition for winning.
+  if (isPaused){return;}
+  updatePlayerPosition();
+ 
+
+  const playerTile = document.querySelector(
+    `.tile[data-x='${playerPosition.x}'][data-y='${playerPosition.y}']`
+  );
+
   if (bossHealth === 0) {
+    isPaused = true;
     showWinPopup();
+  }
+
+  if (playerTile) {
+    const tileColor = window.getComputedStyle(playerTile).backgroundColor;
+    
+    // checks if player is standing on a blue tile
+    if (tileColor === 'rgb(0, 0, 255)' || tileColor === 'blue'){
+      isPaused = true;
+      showLosePopup();
+    }
+
+  }
+  const bossTiles = getBossTiles();
+  const playerInBossArea = bossTiles.some(tile => 
+    tile.x === playerPosition.x && tile.y === playerPosition.y
+  );
+
+  if (playerInBossArea) {
+    isPaused = true;
+    showLosePopup();
   }
 }
 
+// Runs checkforwin 24/7
+function checkForWinLoop() {
+  checkForWin();
+  requestAnimationFrame(checkForWinLoop); // Continuously call the function
+}
+
+
+function getBossTilesLoop(){
+  getBossTiles();
+  requestAnimationFrame(getBossTiles)
+}
+
+
+
 // Starts game
-makeGrid();
-window.addEventListener("keydown", movePlayer);
-window.addEventListener("keydown", playerAttack);
-// callChangeTilesInSequenceRandomly() after a slight delay;
-setTimeout(getRandomPattern,2000);
+function startGame() {
+  if (!isPaused) {
+    makeGrid();
+    window.addEventListener("keydown", movePlayer);
+    window.addEventListener("keydown", playerAttack);
+    // setTimeout(getRandomPattern, 2000);
+    checkForWinLoop();
+    startBossMovement();
+  }
+}
+startGame();
+
