@@ -160,3 +160,8 @@ body {
 .closePopup:hover {
   background-color: #45a049;
 }
+
+
+.closeBtn{
+  display: none !important;
+}
