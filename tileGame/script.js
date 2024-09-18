@@ -10,7 +10,7 @@ let playerPosition = { x: 0, y: 0 };
 const bossSize = 4; // Boss occupies a 2x2 area
 let bossPosition = { x: 5, y: 5 }; // Initial position of the boss
 const bossHealthElement = document.getElementById("boss--health");
-let bossHealth = 50;
+let bossHealth = 150;
 
 let isPaused = false;
 
