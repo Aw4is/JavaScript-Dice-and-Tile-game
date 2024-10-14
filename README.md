@@ -1,5 +1,8 @@
 # Dice and Tile Game using JavaScript
 
+About:
+- Project for me to learn JS
+
 Contains two games:
 
 1. A simple two-player dice game similar mechanics to blackjack
